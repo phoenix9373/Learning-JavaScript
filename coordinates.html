@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      html {
+        width: 200%;
+        height: 200%;
+        background-color: white;
+      }
+      .frame {
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .box {
+        width: 200px;
+        height: 200px;
+        display: block;
+        background-color: wheat;
+        margin: 10px 0;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px 1px gainsboro;
+      }
+      .another {
+        background-color: coral;
+      }
+      .btn__frame {
+        position: fixed;
+        right: 10px;
+        top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="frame"></div>
+    <div class="btn__frame">
+      <button id="by" class="btn">Scroll by 100px(y)</button>
+      <button id="to" class="btn">Scroll to 100px(y)</button>
+      <button id="special" class="btn">Scroll into special</button>
+    </div>
+    <script>
+      // 상자들
+      const frame = document.querySelector(".frame");
+
+      for (let i = 0; i < 20; ++i) {
+        const box = document.createElement("div");
+        if (i == 7) {
+          box.classList.add("another");
+        }
+        box.classList.add("box");
+
+        frame.appendChild(box);
+      }
+
+      // 다른 상자
+      const another = document.querySelector(".another");
+      another.addEventListener("click", (e) => {
+        console.log(another.getBoundingClientRect());
+        console.log(`page: ${e.pageX}, ${e.pageY}`);
+        console.log(`client: ${e.clientX}, ${e.clientY}`);
+      });
+
+      // 스크롤 버튼
+      const scrollBy = document.querySelector("#by");
+      const scrollTo = document.querySelector("#to");
+      const scrollInto = document.querySelector("#special");
+
+      scrollBy.addEventListener("click", () => {
+        window.scrollBy({ left: 0, top: 100, behavior: "smooth" });
+      });
+      scrollTo.addEventListener("click", () => {
+        window.scrollTo({ left: 0, top: 100, behavior: "smooth" });
+      });
+      scrollInto.addEventListener("click", () => {
+        another.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+          inline: "nearest",
+        });
+      });
+    </script>
+  </body>
+</html>

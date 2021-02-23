@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .tag {
+        display: inline-block;
+        background-color: thistle;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tag">
+      <h1>Window Size</h1>
+      <h3 id="screen"></h3>
+      <h3 id="outer"></h3>
+      <h3 id="inner"></h3>
+      <h3 id="client"></h3>
+    </div>
+
+    <script>
+      const screenElement = document.querySelector("#screen");
+      const outerElement = document.querySelector("#outer");
+      const innerElement = document.querySelector("#inner");
+      const tagElement = document.querySelector(".tag");
+
+      function updateTag() {
+        tagElement.innerHTML = `
+        window.screen : ${window.screen.height}, ${window.screen.width} <br/>
+        window.outer : ${window.outerHeight}, ${window.outerWidth} <br/>
+        window.inner : ${window.innerHeight}, ${window.innerWidth} <br/>
+        documentElement.clientWidth : ${document.documentElement.clientHeight}, ${document.documentElement.clientWidth}`;
+      }
+      window.addEventListener("resize", () => {
+        updateTag();
+      });
+
+      window.addEventListener("load", () => {
+        updateTag();
+      });
+
+      console.log(tagElement.getBoundingClientRect());
+    </script>
+  </body>
+</html>
