@@ -4,9 +4,31 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./test.js"></script>
     <title>Document</title>
   </head>
   <body>
-    <script></script>
+    <script>
+      // html 파일만 다운되면 출력
+      // image, font에 대해 뭔가를 하지 않는 이상 DOM에서 하는 것이 좀 더 빠름.
+      window.addEventListener("DOMContentLoaded", () => {
+        console.log("DOMContentLoaded");
+      });
+
+      // css, images, font 등이 모두 다운로드 되면 출력
+      window.addEventListener("load", () => {
+        console.log("load");
+      });
+
+      // unload 되기 전에 호출
+      window.addEventListener("beforeunload", () => {
+        console.log("beforeunload");
+      });
+
+      // unload 되면 호출
+      window.addEventListener("unload", () => {
+        console.log("unload");
+      });
+    </script>
   </body>
 </html>
